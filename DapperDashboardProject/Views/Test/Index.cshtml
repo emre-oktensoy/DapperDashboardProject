@@ -1,0 +1,40 @@
+﻿@model DashboardViewModel
+
+@{
+    Layout = null;
+}
+
+
+<h2> ----Dashboard----</h2>
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="card">
+    <h4>Toplam Satış</h4>
+    <p>@Model.TotalSales.TotalSalesCount adet araç satıldı.</p>
+</div>
+
+<div class="card">
+    <h4>Toplam Gelir</h4>
+    <p>@Model.TotalRevenue.TotalRevenue.ToString("C")</p>
+</div>
+
+<div class="card">
+    <h4>En Çok Satılan Model</h4>
+    <p>@Model.TopModel.CarMake (@Model.TopModel.SaleCount satış)</p>
+</div>
+
+<div class="card">
+    <h4>Son Satış</h4>
+    <p>@Model.LastSale.CarMake - @Model.LastSale.SalePrice.ToString("C") - @Model.LastSale.Date.ToShortDateString()</p>
+</div>
+
+<div class="card">
+    <h4>Şehre Göre Satış Dağılımı</h4>
+    <ul>
+        @foreach (var city in Model.SalesByCity)
+        {
+            <li>@city.SalesRegion: @city.SaleCount satış</li>
+        }
+    </ul>
+</div>
