@@ -8,7 +8,7 @@ builder.Services.AddScoped<DapperContext>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<ICarSaleTableService, CarSaleTableService>();
 //eklendi son
-
+builder.Services.AddHttpClient<GoogleNewsService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

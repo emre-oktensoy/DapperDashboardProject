@@ -10,7 +10,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="">
- <!--<![endif]-->
+<!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +50,7 @@
                     <li>
                         <a href="/Default/TableDataIndex/"><i class="menu-icon fa fa-table"></i>Tablo</a>
                     </li>
-                    
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -171,7 +171,7 @@
                     <div class="col-sm-4">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>Dashboard</h1>
+                                <h1>Araba Satış Kayıtları</h1>
                             </div>
                         </div>
                     </div>
@@ -179,7 +179,6 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    
                                 </ol>
                             </div>
                         </div>
@@ -195,7 +194,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Data Table</strong>
+                                <strong class="card-title"></strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -212,19 +211,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var item in Model.CarSaleTable)
-                                        {
-                                            <tr>
-                                                <td>@item.Date.ToString("dd.MM.yyyy")</td>
-                                                <td>@item.Salesperson</td>
-                                                <td>@item.CustomerName</td>
-                                                <td>@item.CarMake</td>
-                                                <td>@item.CarModel</td>
-                                                <td>@item.CarYear</td>
-                                                <td>@item.Quantity</td>
-                                                <td>@item.SalePrice.ToString("N2")</td>
-                                            </tr>
-                                        }                                   
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -270,7 +257,36 @@
     <script src="/elaadmin-master/assets/js/lib/data-table/buttons.html5.min.js"></script>
     <script src="/elaadmin-master/assets/js/lib/data-table/buttons.print.min.js"></script>
     <script src="/elaadmin-master/assets/js/lib/data-table/buttons.colVis.min.js"></script>
-    <script src="/elaadmin-master/assets/js/init/datatables-init.js"></script>
+    @* <script src="/elaadmin-master/assets/js/init/datatables-init.js"></script> *@
+
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> <!-- Tarih formatı için -->
+
+    <script>
+        $(document).ready(function () {
+            $('#bootstrap-data-table').DataTable({
+                destroy:true, // Eğer tablo zaten varsa, önceki örneği yok et
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '/Default/GetCarSaleData', // Controller’daki action
+                    type: 'POST'
+                },
+                columns: [
+                    { data: 'date', render: function(data) { return moment(data).format('DD.MM.YYYY'); } },
+                    { data: 'salesperson' },
+                    { data: 'customerName' },
+                    { data: 'carMake' },
+                    { data: 'carModel' },
+                    { data: 'carYear' },
+                    { data: 'quantity' },
+                    { data: 'salePrice', render: $.fn.dataTable.render.number('.', ',', 2, '') }
+                ],
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/tr.json"
+                }
+            });
+        });
+    </script>
 
 
     <script type="text/javascript">

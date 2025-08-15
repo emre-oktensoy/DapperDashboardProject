@@ -19,6 +19,7 @@ namespace DapperDashboardProject.Models
         public List<CarMakeCountDto> CarMakeCount { get; set; }
         public List<SalesPersonCountDto> SalesPersonCount { get; set; }
 
+        public List<GoogleNewsItem> NewsList { get; set; }
 
     }
 }

@@ -17,7 +17,7 @@
     <title>Ela Admin - HTML5 Admin Template</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
     <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
 
@@ -392,7 +392,7 @@
                 <!-- Orders -->
                 <div class="orders">
                     <div class="row">
-                        <div class="col-xl-12">
+                        <div class="col-xl-6">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="box-title">En Çok Satış Yapılan Müşteriler </h4>
@@ -427,31 +427,16 @@
                                 </div>
                             </div> <!-- /.card -->
                         </div>  <!-- /.col-lg-8 -->
-
-                       @*  <div class="col-xl-4">
-                            <div class="row">
-                                <div class="col-lg-6 col-xl-12">
-                                    <div class="card br-0">
-                                        <div class="card-body">
-                                            <div class="chart-container ov-h">
-                                                <div id="flotPie1" class="float-chart"></div>
-                                            </div>
-                                        </div>
-                                    </div><!-- /.card -->
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="box-title">Haberler </h4>
                                 </div>
-
-                                <div class="col-lg-6 col-xl-12">
-                                    <div class="card bg-flat-color-3 ">
-                                        <div class="card-body">
-                                            <h4 class="card-title m-0  white-color ">August 2018</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            <div id="flotLine5" class="flot-line"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- /.col-md-4 --> *@
+                                <div class="card-body--">
+                                    @Html.Partial("__NewsListPartial", Model.NewsList)
+                            </div> <!-- /.card -->
+                        </div>
+                        
                     </div>
                 </div>
                 <!-- /.orders -->

@@ -1,0 +1,28 @@
+﻿@model List<GoogleNewsItem>
+
+<div style="height: 500px; overflow-y: auto;">
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var news in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">                       
+                        <div class="card-body">
+                            <h4 class="card-title">@news.Title</h4>
+                            <p class="card-text">@news.Snippet</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">@news.Publisher - @news.NewsDate</small><br />
+                            <a href="@news.NewsUrl" target="_blank" class="btn btn-primary btn-sm mt-2">Haberi Oku</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Haber bulunamadı.</p>
+        }
+    </div>
+</div>
